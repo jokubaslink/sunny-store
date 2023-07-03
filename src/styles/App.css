@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  padding: 8px;
+}
+
+.row {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.main input {
+  width: 500px;
+  height: 40px;
+}
+
+.item-list {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.item-list ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 64px;
+}
+
+.item-list li {
+  background-color: gray;
+  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  list-style-type: none;
+  width: 25%;
+  text-align: center;
+}
+/* Main Page */
+
+.mainPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mainPage--route {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mainPage--route button {
+  padding: 16px;
+  font-size: 16px;
+  border-radius: 16px;
+  border: 1px solid rgb(245, 192, 102);
+  background-color: rgb(245, 180, 68);
+  color: white;
+}
+
+.mainPage--route button:hover {
+  background-color: rgb(245, 192, 102);
+  cursor: pointer;
+}
+
+/* Nav Bar */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(245, 192, 102);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.logoWrapper a {
+  text-decoration: none;
+}
+
+.logo {
+  color: rgb(245, 192, 102);
+}
+
+.menu-item {
+  text-decoration: none;
+  color: black;
+}
+
+.menu-item:hover {
+  text-decoration: underline;
+  color: rgb(245, 192, 102);
+}
+
+.menu-item:first-child {
+  margin-right: 32px;
+}
