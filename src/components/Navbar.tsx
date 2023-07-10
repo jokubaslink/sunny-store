@@ -18,7 +18,7 @@ function Navbar({ cartItemCount }: navbarProps) {
           Products
         </Link>
         <Link to="/cart" className="menu-item">
-          <ShoppingCartIcon /> {/* <span className="cartItemCount">2</span> */}
+          <ShoppingCartIcon />
           {cartItemCount > 0 && (
             <span className="cartItemCount">{cartItemCount}</span>
           )}

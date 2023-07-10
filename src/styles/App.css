@@ -42,23 +42,6 @@
   margin-bottom: 40px;
 }
 
-/* .item-list ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 64px;
-}
-
-.item-list li {
-  background-color: gray;
-  border: 1px solid black;
-  width: 200px;
-  height: 200px;
-  list-style-type: none;
-  width: 25%;
-  text-align: center;
-} */
-
 .allProducts__itemList {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -91,8 +74,6 @@
 }
 
 .allProducts__itemList--itemImg {
-  /* width: 100%;
-  max-width: 150px; */
   width: 60%;
   aspect-ratio: 2/3;
   object-fit: contain;
@@ -154,21 +135,6 @@
 .mainPage__route--title {
   font-weight: 400;
 }
-
-/* .mainPage__route--btn {
-  padding: 16px;
-  font-size: 16px;
-  border-radius: 16px;
-  border: 1px solid rgb(245, 192, 102);
-  background-color: rgb(245, 180, 68);
-  color: white;
-}
- */
-
-/* .mainPage__route--btn:hover {
-  background-color: rgb(245, 192, 102);
-  cursor: pointer;
-} */
 
 .mainPage__topSellers {
   display: grid;
@@ -460,6 +426,7 @@ footer a:hover {
   justify-content: center;
   flex-direction: column;
   gap: 24px;
+  height: 50vh;
 }
 
 @media (max-width: 900px) {
@@ -559,16 +526,3 @@ footer a:hover {
 .MuiButton-root:hover {
   background-color: rgb(245, 192, 102) !important;;
 }
-
-/*    sx={{
-              paddingY: "12px",
-              paddingX: "36px",
-              fontSize: "16px",
-              borderRadius: "16px",
-              border: "1px solid rgb(245, 192, 102)",
-              backgroundColor: "rgb(245, 180, 68)",
-              color: "white",
-              ":hover": {
-                backgroundColor: "rgb(245, 192, 102)",
-              },
-            }} */
