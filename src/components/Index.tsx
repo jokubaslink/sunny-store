@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/joy/CircularProgress";
 import axios from "axios";
-import Layout from "./Layout";
 
 function Index() {
   const navigate = useNavigate();
@@ -72,17 +71,6 @@ function Index() {
             variant="contained"
             onClick={() => {
               navigate("/allproducts");
-            }}
-            sx={{
-              padding: "12px",
-              fontSize: "16px",
-              borderRadius: "16px",
-              border: "1px solid rgb(245, 192, 102)",
-              backgroundColor: "rgb(245, 180, 68)",
-              color: "white",
-              ":hover": {
-                backgroundColor: "rgb(245, 192, 102)",
-              },
             }}
           >
             Find More Products

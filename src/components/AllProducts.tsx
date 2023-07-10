@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Input from "@mui/joy/Input";
 import CircularProgress from "@mui/joy/CircularProgress";
-import Layout from "./Layout";
 import { useNavigate } from "react-router-dom";
 
 type itemType = {
@@ -15,6 +14,7 @@ type itemType = {
     count: number;
   };
   title: string;
+  price: number;
 };
 
 function AllProducts() {
@@ -51,21 +51,26 @@ function AllProducts() {
   }
 
   return (
-    <>
-      <div className="main">
-        <Input
-          type="text"
-          color="neutral"
-          placeholder="Find your product"
-          variant="outlined"
-          onChange={(event) => {
-            filterBySearch(event);
-          }}
-        />
-      </div>
+    <div className="allProducts">
+      <Input
+        type="text"
+        color="neutral"
+        placeholder="Find your product"
+        variant="outlined"
+        fullWidth
+        sx={{
+          maxWidth: "600px",
+          paddingX: "16px",
+          paddingY: "4px",
+          border: "1px solid rgb(245, 180, 68)",
+        }}
+        onChange={(event) => {
+          filterBySearch(event);
+        }}
+      />
       {loading && (
         <div
-          className="item-list"
+          className="allProducts__itemList"
           style={{
             display: "flex",
             alignItems: "center",
@@ -82,28 +87,32 @@ function AllProducts() {
         </div>
       )}
       {!loading && (
-        <div className="item-list">
-          <ul className="allProducts">
-            {filteredList.map((item) => (
-              <figure
-                key={item.id}
-                className="allProducts__item"
-                onClick={() => {
-                  navigate(`/product/${item.id}`);
-                }}
-              >
-                <img
-                  className="allProducts__item--img"
-                  src={item.image}
-                  alt=""
-                />
-                <figcaption>{item.title}</figcaption>
-              </figure>
-            ))}
-          </ul>
+        <div className="allProducts__itemList">
+          {filteredList.map((item) => (
+            <figure
+              key={item.id}
+              className="allProducts__itemList--item"
+              onClick={() => {
+                navigate(`/product/${item.id}`);
+              }}
+            >
+              <img
+                className="allProducts__itemList--itemImg"
+                src={item.image}
+                alt=""
+              />
+              <figcaption className="allProducts__itemList--itemTitle">
+                {item.title}{" "}
+                <span className="allProducts__itemList--itemPrice">
+                  {" "}
+                  ${item.price}
+                </span>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       )}
-    </>
+    </div>
   );
 }
 

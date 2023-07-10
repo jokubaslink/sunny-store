@@ -1,9 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
-import React, { SetStateAction, useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import axios from "axios";
-import Layout from "./Layout";
 import { CircularProgress } from "@mui/joy";
 import Button from "@mui/material/Button";
+import { addToCart, getCartItemCount } from "../utils/CartFunctionality";
+import { getCartItems } from "../utils/CartFunctionality";
 
 type productDataType = {
   category: string;
@@ -16,17 +17,21 @@ type productDataType = {
     count: number;
   };
   title: string;
+  quantity?: string;
 };
 
 type productProps = {
-  setCount: React.Dispatch<SetStateAction<number>>;
-  count: number;
+  cart: productDataType[];
+  setCart: React.Dispatch<SetStateAction<productDataType[]>>;
+  setCartItemCount: React.Dispatch<SetStateAction<number>>;
 };
 
-function Product({ setCount }: productProps) {
+function Product({ cart, setCart, setCartItemCount }: productProps) {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [productData, setProductData] = useState<productDataType>();
   const [loading, setLoading] = useState(true);
+  const [isInCart, setIsInCart] = useState(false);
 
   useEffect(() => {
     async function fetchProductData() {
@@ -35,9 +40,12 @@ function Product({ setCount }: productProps) {
       );
       setProductData(data);
       setLoading(false);
+      if (cart.find((item) => item.id === data.id)) {
+        setIsInCart(true);
+      }
     }
     fetchProductData();
-  }, [id]);
+  }, [id, cart]);
 
   if (loading) {
     return (
@@ -67,27 +75,30 @@ function Product({ setCount }: productProps) {
         <p className="productPage__right--rating">
           Rating: {productData?.rating.rate} / 5
         </p>
-        <Button
-          variant="contained"
-          onClick={() => {
-              setCount((prev) => prev + 1)
-              console.log([{...productData, quantity: 1}])
-          }}
-          sx={{
-            paddingY: "12px",
-            paddingX: "36px",
-            fontSize: "16px",
-            borderRadius: "16px",
-            border: "1px solid rgb(245, 192, 102)",
-            backgroundColor: "rgb(245, 180, 68)",
-            color: "white",
-            ":hover": {
-              backgroundColor: "rgb(245, 192, 102)",
-            },
-          }}
-        >
-          Add To Cart
-        </Button>
+        {isInCart ? (
+          <Button
+            variant="contained"
+            onClick={() => {
+              navigate("/cart");
+            }}
+          >
+            Proceed to checkout
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            onClick={() => {
+              if (productData) {
+                addToCart(productData);
+                setIsInCart(true);
+                setCart(getCartItems());
+                setCartItemCount(getCartItemCount());
+              }
+            }}
+          >
+            Add To Cart
+          </Button>
+        )}
       </div>
     </div>
   );
