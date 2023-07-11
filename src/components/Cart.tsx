@@ -66,36 +66,38 @@ function Cart({ cart, updateQuantity, setCart, setCartItemCount }: cartProps) {
               </figure>
               <div className="cartItem__desc">
                 <h3 className="cartItem__desc--title">{item.title}</h3>
-                <p className="cartItem__desc--price">${item.price}</p>
-                <input
-                  type="number"
-                  className="cartItem__desc--quantity"
-                  min={0}
-                  max={99}
-                  value={item.quantity}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    updateQuantity(item.id, e.target.value);
-                  }}
-                  onKeyDown={(e: React.KeyboardEvent) => {
-                    if (e.key === "." || e.key === "-") {
-                      e.preventDefault();
-                    }
-                  }}
-                />
-                <p className="cartItem__desc--total">
-                  $
-                  {item.quantity === undefined || item.quantity === ""
-                    ? 0
-                    : (item.price * parseInt(item.quantity)).toFixed(2)}
-                </p>
-                <DeleteIcon
-                  className="cartItem__desc--remove"
-                  onClick={() => {
-                    deleteItem(item.id);
-                    setCart(getCartItems());
-                    setCartItemCount(getCartItemCount());
-                  }}
-                />
+                <div className="cartItem__desc--order">
+                  <p className="cartItem__desc--price">${item.price}</p>
+                  <input
+                    type="number"
+                    className="cartItem__desc--quantity"
+                    min={0}
+                    max={99}
+                    value={item.quantity}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      updateQuantity(item.id, e.target.value);
+                    }}
+                    onKeyDown={(e: React.KeyboardEvent) => {
+                      if (e.key === "." || e.key === "-") {
+                        e.preventDefault();
+                      }
+                    }}
+                  />
+                  <p className="cartItem__desc--total">
+                    $
+                    {item.quantity === undefined || item.quantity === ""
+                      ? 0
+                      : (item.price * parseInt(item.quantity)).toFixed(2)}
+                  </p>
+                  <DeleteIcon
+                    className="cartItem__desc--remove"
+                    onClick={() => {
+                      deleteItem(item.id);
+                      setCart(getCartItems());
+                      setCartItemCount(getCartItemCount());
+                    }}
+                  />
+                </div>
               </div>
             </div>
           ))}
@@ -115,10 +117,7 @@ function Cart({ cart, updateQuantity, setCart, setCartItemCount }: cartProps) {
             <span>Price:</span>
             <span>${total().toFixed(2)}</span>
           </div>
-          <Button
-            variant="contained"
-            fullWidth
-          >
+          <Button variant="contained" fullWidth>
             Proceed To Checkout
           </Button>
         </div>

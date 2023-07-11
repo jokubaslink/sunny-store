@@ -451,6 +451,12 @@ footer a:hover {
   width: 100%;
 }
 
+@media(max-width: 370px){
+ .cartItem figure{
+  display: none;
+ }
+}
+
 .cartItem:last-child {
   border: none;
 }
@@ -460,6 +466,23 @@ footer a:hover {
   align-items: center;
   justify-content: center;
   gap: 16px;
+}
+
+.cartItem__desc--order{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+@media(max-width: 685px){
+  .cartItem__desc{
+    flex-direction: column;
+    align-items: start;
+  }
+  .cartItem{
+    gap: 36px;
+  }
 }
 
 .cartItem__desc--price {
@@ -521,6 +544,8 @@ footer a:hover {
   border: 1px solid rgb(245, 192, 102) !important;;
   background-color: rgb(245, 180, 68) !important;;
   color: white !important;;
+  max-width: 400px !important;
+  width: 100% !important;
 }
 
 .MuiButton-root:hover {
